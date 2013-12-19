@@ -1,0 +1,144 @@
+@import "_scut.scss";
+
+$menu-item-color:       #111;
+$menu-item-hover-color: blue;
+
+$menu-item-font:        Helvetica, sans-serif;
+
+
+.plg-drawer-menu{
+    
+    font-family: $menu-item-font;
+    border-right: 1px solid #111;
+    
+    @include scut-padding(130px 10px 20px);
+    @include scut-absolute(0px n 0px 0px);
+    
+    
+    width: 70px;
+    
+    a{
+        color: $menu-item-color;
+        display: block;
+        padding: 15px;        
+        text-decoration: none;
+        font-size: 1em;
+        font-weight: bold;
+    }    
+    
+    .drawer-toggle-trigger{
+        border: 1px solid #111;
+        @include scut-absolute(10px 10px n n);
+    }
+    
+    .plg-menu{
+    
+        @extend %scut-list-unstyled;    
+
+        li{
+            position: relative;
+            @include scut-clearfix; 
+            
+            a:first-child{
+                position: relative;
+                
+                @include scut-clearfix;
+
+                > i.plg-drawer-icon{
+                    margin-top: -19px;
+                    @include scut-absolute(50% n n 15px);
+
+                }
+
+            }
+            
+            ul{
+                @include scut-list-unstyled;
+                display: none;
+                
+                li{
+                    font-size: .9em;
+                    padding-left: 10px;
+                }
+                
+            }
+             
+            
+            .plg-collapse-toggle{
+                padding: 0px;
+                margin-top: -10px;
+                height: 20px;
+                width: 20px;
+                background: transparent;
+                @include scut-absolute(25px 15px n n);
+            }
+            
+            .plg-collapse-toggle:hover{
+                color: $menu-item-hover-color;
+            }
+            
+            .plg-collapse-toggle .plg-toggle-closed{
+                display: inline-block;
+            }
+
+            .plg-collapse-toggle .plg-toggle-open{
+                display: none;
+            }            
+
+
+        }
+        
+        li.plg-collapsed{
+
+            > .plg-collapse-toggle .plg-toggle-closed{
+                display: none;
+            }
+ 
+            > .plg-collapse-toggle .plg-toggle-open{
+                display: inline-block;
+            }
+            
+            > a{
+                color: $menu-item-hover-color;
+                text-decoration: inherit;
+            }
+            
+            > a:first-child{
+                background-color: #ccc;
+            }
+    
+        }
+        
+        > .plg-collapse-toggle:hover ~ a{
+            display: none;
+        }
+        
+        a:hover{
+            color: $menu-item-hover-color;
+            text-decoration: inherit;
+        }
+        
+        a:not(.plg-collapse-toggle):hover{
+            background-color: #ccc;
+        }
+        
+
+    }
+}
+
+.plg-drawer-menu.plg-collapsed{
+    
+    width: 270px;
+    
+    .plg-menu{
+    
+        li{
+            
+            a:first-child{
+                padding-left: 60px;
+                padding-right: 30px;
+
+            }
+         }
+     }
+}

@@ -3,22 +3,94 @@
     <head>
         <title>Design Plug - Jquery Drawer Nav</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+       
+        <!-- font awesome -->
+        <link type="text/css" rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css" />        
         
-        <!-- include js -->
+        <!-- drawer default styles -->
+        <link type="text/css" rel="stylesheet" href="css/jquery.drawer.css" />
         
-        <script src="js/jquery/jquery.min.js"></script>
-        
-        <script>
-            $(document).ready(function(){
-               alert(1);
-            });
-            
-        </script>
         
     </head>
     <body>
-        
+        <nav class="plg-drawer-menu plg-collapsed">
+            
+            <!-- -->
+            
+            <a href="#" class="drawer-toggle-trigger"><i class="fa fa-bars fa-2x"></i></a>
+            
+            <!-- main menu -->
+            
+            <ul class="plg-menu">
+                <li>
+                    <a href="#"><i class="plg-drawer-icon fa fa-home fa-2x"></i> <span class="plg-item-name">Home</span></a> 
+                </li>
+                <li>
+                    <a href="#"><i class="plg-drawer-icon fa fa-globe fa-2x"></i> <span class="plg-item-name">About</span></a>
+                    <a href="#" class="plg-collapse-toggle"><i class="plg-toggle-open fa fa-chevron-down"></i><i class="plg-toggle-closed fa fa-chevron-left"></i></a>
+                    
+                    <ul>
+                        <li><a href="#">The Team</a></li>
+                        <li><a href="#">Our Services
+                            <a href="#" class="plg-collapse-toggle"><i class="plg-toggle-open fa fa-chevron-down"></i><i class="plg-toggle-closed fa fa-chevron-left"></i></a>
+                            </a>
+                            <ul>
+                                <li><a href="#">HTML</a></li>
+                                <li><a href="#">CSS</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="plg-drawer-icon fa fa-file-o fa-2x"></i> <span class="plg-item-name">Blog</span> </a></li>
+                <li><a href="#"><i class="plg-drawer-icon fa fa-envelope-o fa-2x"></i> <span class="plg-item-name">Contact</span> </a></li>
+            </ul>
+            
+            <!--  -->
+        </nav>
         
         
     </body>
+    
+        
+    <!-- include js -->
+
+    <script src="assets/jquery/jquery.min.js"></script>    
+        
+        <script>
+            $(document).ready(function(){
+               $('.drawer-toggle-trigger').click(function(e){
+                   e.preventDefault();
+                  var container = $(this).closest('.plg-drawer-menu');
+
+                  container.animate({width: ['swing']}, 
+                                    100);
+                                
+                                
+                  if(container.hasClass('plg-collapsed'))    
+                  {
+                      $('.plg-item-name, .plg-collapse-toggle').animate({opacity: 0}, 100);
+                      container.find('*').removeClass('plg-collapsed');
+                      container.find('li ul').slideUp();
+                      
+                      container.animate({width: 70}, 
+                                        function(){
+                                            $(this).removeClass('plg-collapsed')
+                                        });
+                  }
+                  else
+                  { 
+                      container.animate({width: 270}, 
+                                         function(){ 
+                                             $(this).addClass('plg-collapsed');
+                                             $('.plg-item-name, .plg-collapse-toggle').animate({opacity: 100}, 600);
+                                         }); 
+                  }
+               });
+               
+               $('.plg-collapse-toggle').click(function(){
+                    $(this).closest('li').toggleClass('plg-collapsed');
+                    $(this).siblings('ul').slideToggle();
+               });
+            });
+        </script>
 </html>
