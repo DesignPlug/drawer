@@ -84,7 +84,13 @@
     
         <script>
             $(document).ready(function(){
-                $('.plg-drawer-menu').PlugDrawerMenu();
+                $('.plg-drawer-menu').PlugDrawerMenu({open: function(){
+                                                                alert("you opened the nav"); 
+                                                            }, 
+                                                      close: function(){ 
+                                                                alert("you just closed the nav"); 
+                                                            } 
+                                                      });
             });
         </script>
 </html>

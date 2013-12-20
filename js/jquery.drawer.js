@@ -18,6 +18,7 @@
     var NS;
     var GetAlignment;
     var Toggle;
+    var Callback;
     
 
     var methods = {
@@ -50,7 +51,13 @@
             
             Id = (function($selector){
                 return '#' + NS($selector);
+            });
+            
+            //callback helper
+            Callback = (function($cb){
+                if(typeof settings[$cb] === 'function') return settings[$cb]();
             })
+            
             
             //set isOpen method
             
@@ -78,6 +85,10 @@
                 if(!isOpen())
                 {
                     Base.addClass(NS("collapsed"));
+                    
+                    //run callback if set
+                    Callback("open");
+                    
                     return true;
                 }
                 
@@ -99,6 +110,9 @@
                     //also close any nested collapsed nav items
                     Base.find('*').removeClass(NS('collapsed'));
                     Base.find('li ul').slideUp(200);
+                    
+                    //run callback if set
+                    Callback("close");
                     
                     return true;
                 }
