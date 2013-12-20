@@ -13,11 +13,11 @@
         
     </head>
     <body>
-        <nav class="plg-drawer-menu plg-collapsed">
+        <nav class="plg-drawer-menu">
             
-            <!-- -->
+            <!-- toggle menu trigger -->
             
-            <a href="#" class="drawer-toggle-trigger"><i class="fa fa-bars fa-2x"></i></a>
+            <a href="#" class="plg-drawer-toggle-trigger"><i class="fa fa-bars fa-2x"></i></a>
             
             <!-- main menu -->
             
@@ -26,13 +26,23 @@
                     <a href="#"><i class="plg-drawer-icon fa fa-home fa-2x"></i> <span class="plg-item-name">Home</span></a> 
                 </li>
                 <li>
-                    <a href="#"><i class="plg-drawer-icon fa fa-globe fa-2x"></i> <span class="plg-item-name">About</span></a>
-                    <a href="#" class="plg-collapse-toggle"><i class="plg-toggle-open fa fa-chevron-down"></i><i class="plg-toggle-closed fa fa-chevron-left"></i></a>
+                    <a href="#">
+                        <i class="plg-drawer-icon fa fa-globe fa-2x"></i> 
+                        <span class="plg-item-name">About</span>
+                        <span class="plg-collapse-toggle">
+                            <i class="plg-toggle-open fa fa-chevron-down"></i>
+                            <i class="plg-toggle-closed fa fa-chevron-left"></i>
+                        </span>
+                    </a>
+                    
                     
                     <ul>
                         <li><a href="#">The Team</a></li>
                         <li><a href="#">Our Services
-                            <a href="#" class="plg-collapse-toggle"><i class="plg-toggle-open fa fa-chevron-down"></i><i class="plg-toggle-closed fa fa-chevron-left"></i></a>
+                            <span class="plg-collapse-toggle">
+                                <i class="plg-toggle-open fa fa-chevron-down"></i>
+                                <i class="plg-toggle-closed fa fa-chevron-left"></i>
+                            </span>
                             </a>
                             <ul>
                                 <li><a href="#">HTML</a></li>
@@ -45,52 +55,36 @@
                 <li><a href="#"><i class="plg-drawer-icon fa fa-envelope-o fa-2x"></i> <span class="plg-item-name">Contact</span> </a></li>
             </ul>
             
-            <!--  -->
+            <!-- bottom aligned menu -->
+            
+            <ul class="plg-menu plg-menu-align-bottom">
+                <li><a href="#"><i class="plg-drawer-icon fa fa-gear fa-2x"></i> <span class="plg-item-name">Settings</span> </a></li>
+            </ul>
+            
         </nav>
         
+        <p>Content in the Body</p>
         
     </body>
     
         
-    <!-- include js -->
+    <!-- include jquery -->
 
-    <script src="assets/jquery/jquery.min.js"></script>    
+    <script src="assets/jquery/jquery.min.js"></script> 
+    
+    <!--  -->
+    
+    <!-- swipe -->
         
+    <script src="assets/touchswipe/jquery.touchSwipe.min.js"></script> 
+    
+    <!-- drawer -->
+        
+    <script src="js/jquery.drawer.js"></script>     
+    
         <script>
             $(document).ready(function(){
-               $('.drawer-toggle-trigger').click(function(e){
-                   e.preventDefault();
-                  var container = $(this).closest('.plg-drawer-menu');
-
-                  container.animate({width: ['swing']}, 
-                                    100);
-                                
-                                
-                  if(container.hasClass('plg-collapsed'))    
-                  {
-                      $('.plg-item-name, .plg-collapse-toggle').animate({opacity: 0}, 100);
-                      container.find('*').removeClass('plg-collapsed');
-                      container.find('li ul').slideUp();
-                      
-                      container.animate({width: 70}, 
-                                        function(){
-                                            $(this).removeClass('plg-collapsed')
-                                        });
-                  }
-                  else
-                  { 
-                      container.animate({width: 270}, 
-                                         function(){ 
-                                             $(this).addClass('plg-collapsed');
-                                             $('.plg-item-name, .plg-collapse-toggle').animate({opacity: 100}, 600);
-                                         }); 
-                  }
-               });
-               
-               $('.plg-collapse-toggle').click(function(){
-                    $(this).closest('li').toggleClass('plg-collapsed');
-                    $(this).siblings('ul').slideToggle();
-               });
+                $('.plg-drawer-menu').PlugDrawerMenu();
             });
         </script>
 </html>

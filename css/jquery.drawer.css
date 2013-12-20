@@ -8,7 +8,12 @@
   padding-left: 0;
 }
 
+body {
+  background: #ccc;
+}
+
 .plg-drawer-menu {
+  background-color: white;
   font-family: Helvetica, sans-serif;
   border-right: 1px solid #111;
   padding-top: 130px;
@@ -19,6 +24,9 @@
   top: 0px;
   bottom: 0px;
   left: 0px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   width: 70px;
 }
 .plg-drawer-menu a {
@@ -28,12 +36,22 @@
   text-decoration: none;
   font-size: 1em;
   font-weight: bold;
+  -webkit-transition: all 0.15s ease-in-out;
+  -moz-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  border-radius: 2px;
 }
-.plg-drawer-menu .drawer-toggle-trigger {
+.plg-drawer-menu a .plg-item-name {
+  opacity: 0;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+.plg-drawer-menu .plg-drawer-toggle-trigger {
   border: 1px solid #111;
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 15px;
 }
 .plg-drawer-menu .plg-menu li {
   position: relative;
@@ -45,6 +63,7 @@
 }
 .plg-drawer-menu .plg-menu li a:first-child {
   position: relative;
+  margin-top: 1px;
 }
 .plg-drawer-menu .plg-menu li a:first-child:after {
   content: "";
@@ -75,6 +94,10 @@
   position: absolute;
   top: 25px;
   right: 15px;
+  -webkit-transition: all 0.15s ease-in-out;
+  -moz-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  opacity: 0;
 }
 .plg-drawer-menu .plg-menu li .plg-collapse-toggle:hover {
   color: blue;
@@ -85,21 +108,16 @@
 .plg-drawer-menu .plg-menu li .plg-collapse-toggle .plg-toggle-open {
   display: none;
 }
-.plg-drawer-menu .plg-menu li.plg-collapsed > .plg-collapse-toggle .plg-toggle-closed {
-  display: none;
-}
-.plg-drawer-menu .plg-menu li.plg-collapsed > .plg-collapse-toggle .plg-toggle-open {
-  display: inline-block;
-}
-.plg-drawer-menu .plg-menu li.plg-collapsed > a {
+.plg-drawer-menu .plg-menu li.plg-collapsed > a:first-child {
+  background-color: #ccc;
   color: blue;
   text-decoration: inherit;
 }
-.plg-drawer-menu .plg-menu li.plg-collapsed > a:first-child {
-  background-color: #ccc;
-}
-.plg-drawer-menu .plg-menu > .plg-collapse-toggle:hover ~ a {
+.plg-drawer-menu .plg-menu li.plg-collapsed > a:first-child .plg-collapse-toggle .plg-toggle-closed {
   display: none;
+}
+.plg-drawer-menu .plg-menu li.plg-collapsed > a:first-child .plg-collapse-toggle .plg-toggle-open {
+  display: inline-block;
 }
 .plg-drawer-menu .plg-menu a:hover {
   color: blue;
@@ -108,6 +126,12 @@
 .plg-drawer-menu .plg-menu a:not(.plg-collapse-toggle):hover {
   background-color: #ccc;
 }
+.plg-drawer-menu .plg-menu.plg-menu-align-bottom {
+  position: absolute;
+  right: 10px;
+  bottom: 15px;
+  left: 10px;
+}
 
 .plg-drawer-menu.plg-collapsed {
   width: 270px;
@@ -115,4 +139,23 @@
 .plg-drawer-menu.plg-collapsed .plg-menu li a:first-child {
   padding-left: 60px;
   padding-right: 30px;
+}
+.plg-drawer-menu.plg-collapsed .plg-menu .plg-item-name, .plg-drawer-menu.plg-collapsed .plg-menu .plg-collapse-toggle {
+  opacity: 1;
+}
+
+.plg-drawer-menu.plg-align-right {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: auto;
+  border-right: none;
+  border-left: 1px solid #111;
+}
+.plg-drawer-menu.plg-align-right .plg-drawer-toggle-trigger {
+  position: absolute;
+  top: 10px;
+  right: auto;
+  left: 15px;
 }
