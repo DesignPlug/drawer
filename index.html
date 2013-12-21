@@ -10,6 +10,12 @@
         <!-- drawer default styles -->
         <link type="text/css" rel="stylesheet" href="css/jquery.drawer.css" />
         
+        <style>
+            body {
+                background: #ccc;
+            }
+        </style>
+        
         
     </head>
     <body>
@@ -63,8 +69,6 @@
             
         </nav>
         
-        <p>Content in the Body</p>
-        
     </body>
     
         
@@ -85,10 +89,10 @@
         <script>
             $(document).ready(function(){
                 $('.plg-drawer-menu').PlugDrawerMenu({open: function(){
-                                                                alert("you opened the nav"); 
+                                                                console.log("you opened the nav"); 
                                                             }, 
                                                       close: function(){ 
-                                                                alert("you just closed the nav"); 
+                                                                console.log("you just closed the nav"); 
                                                             } 
                                                       });
             });

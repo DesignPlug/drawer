@@ -33,7 +33,7 @@
                 namespace    : "plg-",  //name space for drawer css selectors
                 open         : null,    //callback function fired when drawer is toggled open
                 close        : null,    //callback function fired when drawer is toggled shut
-                pushBody     : false,   //adds margin to the body on either side so its entirely visible in open and closed states
+                pushBody     : false   //TODO adds padding to the body on either side so its entirely visible in open and closed states
             }, options);
            
             //set namespace helper
