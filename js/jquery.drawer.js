@@ -89,6 +89,8 @@
                     //run callback if set
                     Callback("open");
                     
+                    
+                    
                     return true;
                 }
                 

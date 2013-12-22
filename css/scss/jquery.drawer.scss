@@ -57,9 +57,9 @@ $menu-item-font:        Helvetica, sans-serif;
                 @include scut-margin(1px n n);
                 @include scut-clearfix;
 
-                > i.plg-drawer-icon{
+                > .plg-drawer-icon{
                     margin-top: -19px;
-                    @include scut-absolute(50% n n 15px);
+                    @include scut-absolute(50% n n 20px);
 
                 }
 
@@ -152,6 +152,9 @@ $menu-item-font:        Helvetica, sans-serif;
                 padding-left: 60px;
                 padding-right: 30px;
 
+                > .plg-drawer-icon{
+                    left: 15px;
+                }
             }
          }
          
@@ -170,5 +173,63 @@ $menu-item-font:        Helvetica, sans-serif;
     .plg-drawer-toggle-trigger{
         @include scut-absolute(10px auto n 15px);
     }
+    
+}
+
+@media (max-width: 600px) {
+
+    .plg-drawer-menu{
+        
+        width: 45px;
+        padding-left: 5px;
+
+        .plg-drawer-toggle-trigger{
+            padding: 8px;
+            font-size: .8em;
+            @include scut-absolute(10px 10px n n);
+        }
+        
+        
+        .plg-menu{
+        
+            li{
+            
+                a:first-child{
+                    font-size: .9em;
+
+                    > .plg-drawer-icon{
+                        margin-top: -14px;
+                        left: 10px;
+                        font-size: 2em;
+                    }
+
+                }
+                
+            }
+        
+        
+        }       
+    
+    }
+    
+    .plg-drawer-menu.plg-collapsed{
+        
+        width: 200px;
+                
+        .plg-menu{
+        
+            li{
+                ul{
+                    li{
+                        a:first-child{
+                            @include scut-padding(10px n n 30px);
+                        }
+                    }
+                }   
+              }
+         }
+    }
+    
+    
     
 }
