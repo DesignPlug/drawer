@@ -15,11 +15,13 @@
                 background: #ccc;
             }
         </style>
-        
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
         
     </head>
     <body>
-        <nav class="plg-drawer-menu">
+        <nav class="plg-drawer-menu ">
             
             <!-- toggle menu trigger -->
             
@@ -68,13 +70,23 @@
             </ul>
             
         </nav>
-        
+        <ul>
+            <li>
+                <a href="#" onclick="$('.plg-drawer-menu').PlugDrawerMenu('options', {pushBody: true});">Switch to push body mode</a>
+            </li>
+            <li>
+                <a href="#" onclick="$('.plg-drawer-menu').PlugDrawerMenu('options', {pushBody: false});">Switch to switch body push off</a>
+            </li>            
+            <li>
+                <a href="#" onclick="$('.plg-drawer-menu').PlugDrawerMenu('toggle');">Just Toggle Me</a>
+            </li>
+        </ul>
     </body>
     
         
     <!-- include jquery -->
 
-    <script src="assets/jquery/jquery.min.js"></script> 
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     
     <!--  -->
     
@@ -88,7 +100,7 @@
     
         <script>
             $(document).ready(function(){
-                $('.plg-drawer-menu').PlugDrawerMenu({open: function(){
+                $('.plg-drawer-menu').PlugDrawerMenu({ open: function(){
                                                                 console.log("you opened the nav"); 
                                                             }, 
                                                       close: function(){ 

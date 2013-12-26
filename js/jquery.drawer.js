@@ -3,7 +3,12 @@
 
     //the plugin object
     var Base;
-
+    
+    //cache body selector
+    var Body = $('body');
+    
+    var Wrapper;
+    
     //option vars
 
     var settings;
@@ -19,6 +24,8 @@
     var GetAlignment;
     var Toggle;
     var Callback;
+    var EL;
+    var WrapContent;
     
 
     var methods = {
@@ -33,14 +40,15 @@
                 namespace    : "plg-",  //name space for drawer css selectors
                 open         : null,    //callback function fired when drawer is toggled open
                 close        : null,    //callback function fired when drawer is toggled shut
-                pushBody     : false   //TODO adds padding to the body on either side so its entirely visible in open and closed states
+                pushBody     : false   //if true toggle trigger slides the whole body to expose collapsed menu
             }, options);
+            
            
             //set namespace helper
             NS = (function($selector){
                 return settings.namespace + $selector;
             });
-            
+
             //class selector helper
             
             Cls = (function($selector){
@@ -56,16 +64,39 @@
             //callback helper
             Callback = (function($cb){
                 if(typeof settings[$cb] === 'function') return settings[$cb]();
-            })
+            });
             
+            WrapContent = (function(){
+                            if(settings.pushBody === true)
+                            {
+                                if(!Wrapper)
+                                {
+                                    Body.wrapInner('<div class="' + NS('content-wrapper') + '" />');
+                                    Wrapper = $(Cls('content-wrapper'));
+                                }
+                            }
+                            else if(Wrapper)
+                            {
+                                Wrapper.children().unwrap();
+                                Wrapper = false;
+                            }
+            });
+            
+            WrapContent();
+            
+            //ELement determine which object to apply collapse to on open call
+            EL = (function(){
+               if(settings.pushBody === true) return Wrapper;
+               else return Base;
+            });
             
             //set isOpen method
             
             isOpen = (function(){
                 
-                //check if drawer has the collapsed class,
+                //check if drawer or body has the collapsed class,
                 //and return true if so
-                if(Base.hasClass(NS("collapsed")))
+                if(EL().hasClass(NS("collapsed")))
                 {
                     return true;
                 }
@@ -84,12 +115,10 @@
                 //if not opened, open, and return true;
                 if(!isOpen())
                 {
-                    Base.addClass(NS("collapsed"));
+                    EL().addClass(NS("collapsed"));
                     
                     //run callback if set
                     Callback("open");
-                    
-                    
                     
                     return true;
                 }
@@ -107,7 +136,7 @@
                 //if opened, close, and return true;
                 if(isOpen())
                 {
-                    Base.removeClass(NS("collapsed"));
+                    EL().removeClass(NS("collapsed"));
                     
                     //also close any nested collapsed nav items
                     Base.find('*').removeClass(NS('collapsed'));
@@ -146,6 +175,7 @@
                 if(!Open()) Close();
             
             });
+            
             
             
             //drawer listeners
@@ -202,10 +232,19 @@
                 e.preventDefault();
             });
             
+            //make nav scroll if push body is true
+            
+            if(settings.pushBody === true)
+            {
+                $(window).scroll(function(){
+                    Wrapper.find(Base).css('top', $(this).scrollTop());
+                });
+            }
+            
         },
                 
         //toggle drawer        
-        toggle  : function( ) {    
+        toggle  : function() {    
             
             return Toggle();
             
@@ -230,6 +269,12 @@
             
             return isOpen();
             
+        },
+                
+        options  : function($options){
+    
+            settings = $.extend(settings, $options);
+            WrapContent();
         }
     };
 

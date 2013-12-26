@@ -16,7 +16,7 @@
   padding-right: 10px;
   padding-left: 10px;
   padding-bottom: 20px;
-  position: absolute;
+  position: fixed;
   top: 0px;
   bottom: 0px;
   left: 0px;
@@ -129,22 +129,27 @@
   left: 10px;
 }
 
-.plg-drawer-menu.plg-collapsed {
+.plg-drawer-menu.plg-collapsed,
+.plg-content-wrapper .plg-drawer-menu {
   width: 270px;
 }
-.plg-drawer-menu.plg-collapsed .plg-menu li a:first-child {
+.plg-drawer-menu.plg-collapsed .plg-menu li a:first-child,
+.plg-content-wrapper .plg-drawer-menu .plg-menu li a:first-child {
   padding-left: 60px;
   padding-right: 30px;
 }
-.plg-drawer-menu.plg-collapsed .plg-menu li a:first-child > .plg-drawer-icon {
+.plg-drawer-menu.plg-collapsed .plg-menu li a:first-child > .plg-drawer-icon,
+.plg-content-wrapper .plg-drawer-menu .plg-menu li a:first-child > .plg-drawer-icon {
   left: 15px;
 }
-.plg-drawer-menu.plg-collapsed .plg-menu .plg-item-name, .plg-drawer-menu.plg-collapsed .plg-menu .plg-collapse-toggle {
+.plg-drawer-menu.plg-collapsed .plg-menu .plg-item-name, .plg-drawer-menu.plg-collapsed .plg-menu .plg-collapse-toggle,
+.plg-content-wrapper .plg-drawer-menu .plg-menu .plg-item-name,
+.plg-content-wrapper .plg-drawer-menu .plg-menu .plg-collapse-toggle {
   opacity: 1;
 }
 
 .plg-drawer-menu.plg-align-right {
-  position: absolute;
+  position: fixed;
   top: 0px;
   right: 0px;
   bottom: 0px;
@@ -157,6 +162,62 @@
   top: 10px;
   right: auto;
   left: 15px;
+}
+
+/* push body specific styling */
+.plg-content-wrapper {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  margin-left: -10px;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+.plg-content-wrapper:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.plg-content-wrapper .plg-drawer-menu {
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  position: fixed;
+  top: 0px;
+  right: 100%;
+  bottom: 0px;
+  left: auto;
+}
+
+.plg-content-wrapper.plg-collapsed {
+  margin-left: 280px;
+}
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu {
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  margin-right: -290px;
+}
+
+/* push body align right */
+.plg-content-wrapper.plg-align-right {
+  margin-left: auto;
+  margin-right: -10px;
+}
+.plg-content-wrapper.plg-align-right .plg-drawer-menu {
+  position: fixed;
+  right: auto;
+  left: 100%;
+}
+
+.plg-content-wrapper.plg-align-right.plg-collapsed {
+  margin-left: auto;
+  margin-right: 280px;
+}
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu {
+  margin-right: auto;
+  margin-left: -290px;
 }
 
 @media (max-width: 600px) {
@@ -180,10 +241,30 @@
     font-size: 2em;
   }
 
+  /* 
+      Menu in collapsed state or when content is wrapped
+  */
+  .plg-content-wrapper .plg-drawer-menu,
   .plg-drawer-menu.plg-collapsed {
     width: 200px;
   }
-  .plg-drawer-menu.plg-collapsed .plg-menu li ul li a:first-child {
+
+  .plg-content-wrapper.plg-collapsed:not(.plg-align-right) {
+    margin-left: 210px;
+  }
+  .plg-content-wrapper.plg-collapsed:not(.plg-align-right) .plg-drawer-menu {
+    margin-right: -220px;
+  }
+
+  .plg-content-wrapper.plg-collapsed.plg-align-right {
+    margin-right: 210px;
+  }
+  .plg-content-wrapper.plg-collapsed.plg-align-right .plg-drawer-menu {
+    margin-left: -220px;
+  }
+
+  .plg-drawer-menu.plg-collapsed .plg-menu li ul li a:first-child,
+  .plg-content-wrapper .plg-drawer-menu .plg-menu li ul li a:first-child {
     padding-top: 10px;
     padding-left: 30px;
   }
