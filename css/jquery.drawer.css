@@ -3,11 +3,36 @@
 * v0.8.0
 * Docs at http://davidtheclark.github.io/scut
 */
-.plg-drawer-menu .plg-menu {
+.plg-drawer-menu .plg-menu, .plg-drawer-menu .plg-menu li ul {
   list-style-type: none;
   padding-left: 0;
 }
 
+.plg-drawer-menu.plg-inline .plg-menu,
+.plg-drawer-menu.plg-collapsed.plg-inline .plg-menu,
+.plg-content-wrapper .plg-drawer-menu.plg-inline .plg-menu,
+.plg-drawer-menu.plg-align-right.plg-inline .plg-menu,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline .plg-menu,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu {
+  list-style-type: none;
+  padding-left: 0;
+}
+.plg-drawer-menu.plg-inline .plg-menu > li,
+.plg-drawer-menu.plg-collapsed.plg-inline .plg-menu > li,
+.plg-content-wrapper .plg-drawer-menu.plg-inline .plg-menu > li,
+.plg-drawer-menu.plg-align-right.plg-inline .plg-menu > li,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu > li,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline .plg-menu > li,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu > li {
+  display: inline-block;
+}
+
+/* 
+*    darwer menu default style
+*    when the menu is NOT collapsed
+*
+*/
 .plg-drawer-menu {
   background-color: white;
   font-family: Helvetica, sans-serif;
@@ -42,6 +67,7 @@
   -webkit-transition: all 0.1s ease-in-out;
   -moz-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
+  white-space: nowrap;
 }
 .plg-drawer-menu .plg-drawer-toggle-trigger {
   border: 1px solid #111;
@@ -73,8 +99,6 @@
   left: 20px;
 }
 .plg-drawer-menu .plg-menu li ul {
-  list-style-type: none;
-  padding-left: 0;
   display: none;
 }
 .plg-drawer-menu .plg-menu li ul li {
@@ -83,17 +107,18 @@
 }
 .plg-drawer-menu .plg-menu li .plg-collapse-toggle {
   padding: 0px;
-  margin-top: -10px;
-  height: 20px;
+  margin-top: -7px;
+  height: 15px;
   width: 20px;
   background: transparent;
   position: absolute;
-  top: 25px;
+  top: 50%;
   right: 15px;
   -webkit-transition: all 0.15s ease-in-out;
   -moz-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
   opacity: 0;
+  text-align: center;
 }
 .plg-drawer-menu .plg-menu li .plg-collapse-toggle:hover {
   color: blue;
@@ -129,6 +154,12 @@
   left: 10px;
 }
 
+/* 
+*
+*    darwer menu default styles
+*    in collapsed state
+*
+*/
 .plg-drawer-menu.plg-collapsed,
 .plg-content-wrapper .plg-drawer-menu {
   width: 270px;
@@ -146,6 +177,10 @@
 .plg-content-wrapper .plg-drawer-menu .plg-menu .plg-item-name,
 .plg-content-wrapper .plg-drawer-menu .plg-menu .plg-collapse-toggle {
   opacity: 1;
+}
+.plg-drawer-menu.plg-collapsed .plg-menu .plg-item-name,
+.plg-content-wrapper .plg-drawer-menu .plg-menu .plg-item-name {
+  white-space: normal;
 }
 
 .plg-drawer-menu.plg-align-right {
@@ -220,6 +255,11 @@
   margin-left: -290px;
 }
 
+/**
+*
+*   drawer menu default responsive styles
+*
+**/
 @media (max-width: 600px) {
   .plg-drawer-menu {
     width: 45px;
@@ -268,4 +308,206 @@
     padding-top: 10px;
     padding-left: 30px;
   }
+}
+/**
+*
+*   drawer menu inline style
+*
+**/
+.plg-drawer-menu.plg-inline,
+.plg-drawer-menu.plg-collapsed.plg-inline,
+.plg-content-wrapper .plg-drawer-menu.plg-inline,
+.plg-drawer-menu.plg-align-right.plg-inline,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline {
+  border: 1px solid #111;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  width: auto;
+  display: inline-block;
+}
+.plg-drawer-menu.plg-inline a .plg-item-name,
+.plg-drawer-menu.plg-collapsed.plg-inline a .plg-item-name,
+.plg-content-wrapper .plg-drawer-menu.plg-inline a .plg-item-name,
+.plg-drawer-menu.plg-align-right.plg-inline a .plg-item-name,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline a .plg-item-name,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline a .plg-item-name,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline a .plg-item-name {
+  opacity: 1;
+}
+.plg-drawer-menu.plg-inline .plg-drawer-toggle-trigger,
+.plg-drawer-menu.plg-collapsed.plg-inline .plg-drawer-toggle-trigger,
+.plg-content-wrapper .plg-drawer-menu.plg-inline .plg-drawer-toggle-trigger,
+.plg-drawer-menu.plg-align-right.plg-inline .plg-drawer-toggle-trigger,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline .plg-drawer-toggle-trigger,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline .plg-drawer-toggle-trigger,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline .plg-drawer-toggle-trigger {
+  display: none;
+}
+.plg-drawer-menu.plg-inline .plg-menu,
+.plg-drawer-menu.plg-collapsed.plg-inline .plg-menu,
+.plg-content-wrapper .plg-drawer-menu.plg-inline .plg-menu,
+.plg-drawer-menu.plg-align-right.plg-inline .plg-menu,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline .plg-menu,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu {
+  margin: 0px auto;
+}
+.plg-drawer-menu.plg-inline .plg-menu > li > a,
+.plg-drawer-menu.plg-collapsed.plg-inline .plg-menu > li > a,
+.plg-content-wrapper .plg-drawer-menu.plg-inline .plg-menu > li > a,
+.plg-drawer-menu.plg-align-right.plg-inline .plg-menu > li > a,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu > li > a,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline .plg-menu > li > a,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu > li > a {
+  padding-right: 40px;
+}
+.plg-drawer-menu.plg-inline .plg-menu > li > a > .plg-collapse-toggle,
+.plg-drawer-menu.plg-collapsed.plg-inline .plg-menu > li > a > .plg-collapse-toggle,
+.plg-content-wrapper .plg-drawer-menu.plg-inline .plg-menu > li > a > .plg-collapse-toggle,
+.plg-drawer-menu.plg-align-right.plg-inline .plg-menu > li > a > .plg-collapse-toggle,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu > li > a > .plg-collapse-toggle,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline .plg-menu > li > a > .plg-collapse-toggle,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu > li > a > .plg-collapse-toggle {
+  margin-top: -9px;
+}
+.plg-drawer-menu.plg-inline .plg-menu li,
+.plg-drawer-menu.plg-collapsed.plg-inline .plg-menu li,
+.plg-content-wrapper .plg-drawer-menu.plg-inline .plg-menu li,
+.plg-drawer-menu.plg-align-right.plg-inline .plg-menu li,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline .plg-menu li,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li {
+  position: relative;
+  float: left;
+}
+.plg-drawer-menu.plg-inline .plg-menu li a:first-child,
+.plg-drawer-menu.plg-collapsed.plg-inline .plg-menu li a:first-child,
+.plg-content-wrapper .plg-drawer-menu.plg-inline .plg-menu li a:first-child,
+.plg-drawer-menu.plg-align-right.plg-inline .plg-menu li a:first-child,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li a:first-child,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline .plg-menu li a:first-child,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li a:first-child {
+  position: relative;
+  margin-top: 1px;
+  padding-left: 60px;
+}
+.plg-drawer-menu.plg-inline .plg-menu li a:first-child:after,
+.plg-drawer-menu.plg-collapsed.plg-inline .plg-menu li a:first-child:after,
+.plg-content-wrapper .plg-drawer-menu.plg-inline .plg-menu li a:first-child:after,
+.plg-drawer-menu.plg-align-right.plg-inline .plg-menu li a:first-child:after,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li a:first-child:after,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline .plg-menu li a:first-child:after,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li a:first-child:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.plg-drawer-menu.plg-inline .plg-menu li a:first-child > .plg-drawer-icon,
+.plg-drawer-menu.plg-collapsed.plg-inline .plg-menu li a:first-child > .plg-drawer-icon,
+.plg-content-wrapper .plg-drawer-menu.plg-inline .plg-menu li a:first-child > .plg-drawer-icon,
+.plg-drawer-menu.plg-align-right.plg-inline .plg-menu li a:first-child > .plg-drawer-icon,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li a:first-child > .plg-drawer-icon,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline .plg-menu li a:first-child > .plg-drawer-icon,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li a:first-child > .plg-drawer-icon {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+}
+.plg-drawer-menu.plg-inline .plg-menu li a:first-child > .plg-collapse-toggle,
+.plg-drawer-menu.plg-collapsed.plg-inline .plg-menu li a:first-child > .plg-collapse-toggle,
+.plg-content-wrapper .plg-drawer-menu.plg-inline .plg-menu li a:first-child > .plg-collapse-toggle,
+.plg-drawer-menu.plg-align-right.plg-inline .plg-menu li a:first-child > .plg-collapse-toggle,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li a:first-child > .plg-collapse-toggle,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline .plg-menu li a:first-child > .plg-collapse-toggle,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li a:first-child > .plg-collapse-toggle {
+  right: 5px;
+}
+.plg-drawer-menu.plg-inline .plg-menu li ul,
+.plg-drawer-menu.plg-collapsed.plg-inline .plg-menu li ul,
+.plg-content-wrapper .plg-drawer-menu.plg-inline .plg-menu li ul,
+.plg-drawer-menu.plg-align-right.plg-inline .plg-menu li ul,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li ul,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline .plg-menu li ul,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li ul {
+  list-style-type: none;
+  padding-left: 0;
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  min-width: 100%;
+  display: none;
+  background-color: white;
+  border: 1px solid #111;
+}
+.plg-drawer-menu.plg-inline .plg-menu li ul:after,
+.plg-drawer-menu.plg-collapsed.plg-inline .plg-menu li ul:after,
+.plg-content-wrapper .plg-drawer-menu.plg-inline .plg-menu li ul:after,
+.plg-drawer-menu.plg-align-right.plg-inline .plg-menu li ul:after,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li ul:after,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline .plg-menu li ul:after,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li ul:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.plg-drawer-menu.plg-inline .plg-menu li ul li,
+.plg-drawer-menu.plg-collapsed.plg-inline .plg-menu li ul li,
+.plg-content-wrapper .plg-drawer-menu.plg-inline .plg-menu li ul li,
+.plg-drawer-menu.plg-align-right.plg-inline .plg-menu li ul li,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li ul li,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline .plg-menu li ul li,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li ul li {
+  float: none;
+  padding: 0px;
+}
+.plg-drawer-menu.plg-inline .plg-menu li ul li a:first-child,
+.plg-drawer-menu.plg-collapsed.plg-inline .plg-menu li ul li a:first-child,
+.plg-content-wrapper .plg-drawer-menu.plg-inline .plg-menu li ul li a:first-child,
+.plg-drawer-menu.plg-align-right.plg-inline .plg-menu li ul li a:first-child,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li ul li a:first-child,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline .plg-menu li ul li a:first-child,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li ul li a:first-child {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.plg-drawer-menu.plg-inline .plg-menu li ul li ul,
+.plg-drawer-menu.plg-collapsed.plg-inline .plg-menu li ul li ul,
+.plg-content-wrapper .plg-drawer-menu.plg-inline .plg-menu li ul li ul,
+.plg-drawer-menu.plg-align-right.plg-inline .plg-menu li ul li ul,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li ul li ul,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline .plg-menu li ul li ul,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li ul li ul {
+  position: absolute;
+  top: 0px;
+  right: auto;
+  left: 100%;
+}
+.plg-drawer-menu.plg-inline .plg-menu li .plg-collapse-toggle,
+.plg-drawer-menu.plg-collapsed.plg-inline .plg-menu li .plg-collapse-toggle,
+.plg-content-wrapper .plg-drawer-menu.plg-inline .plg-menu li .plg-collapse-toggle,
+.plg-drawer-menu.plg-align-right.plg-inline .plg-menu li .plg-collapse-toggle,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li .plg-collapse-toggle,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline .plg-menu li .plg-collapse-toggle,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu li .plg-collapse-toggle {
+  opacity: 1;
+}
+.plg-drawer-menu.plg-inline .plg-menu.plg-menu-align-bottom,
+.plg-drawer-menu.plg-collapsed.plg-inline .plg-menu.plg-menu-align-bottom,
+.plg-content-wrapper .plg-drawer-menu.plg-inline .plg-menu.plg-menu-align-bottom,
+.plg-drawer-menu.plg-align-right.plg-inline .plg-menu.plg-menu-align-bottom,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu.plg-menu-align-bottom,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline .plg-menu.plg-menu-align-bottom,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline .plg-menu.plg-menu-align-bottom {
+  display: none;
 }

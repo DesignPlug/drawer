@@ -14,6 +14,12 @@ $collapse-rsp-width:    200px;
 $collapse-width:        270px;
 
 
+/* 
+*    darwer menu default style
+*    when the menu is NOT collapsed
+*
+*/
+
 .plg-drawer-menu{
     
     background-color: $drawer-bgcolor;
@@ -39,6 +45,7 @@ $collapse-width:        270px;
         .plg-item-name{
             opacity: 0;
             @include transition (all .1s ease-in-out);
+            white-space: nowrap;
         }        
     }       
     
@@ -70,7 +77,7 @@ $collapse-width:        270px;
             }
             
             ul{
-                @include scut-list-unstyled;
+                @extend %scut-list-unstyled;  
                 display: none;
                 
                 li{
@@ -83,13 +90,14 @@ $collapse-width:        270px;
             
             .plg-collapse-toggle{
                 padding: 0px;
-                margin-top: -10px;
-                height: 20px;
+                margin-top: -7px;
+                height: 15px;
                 width: 20px;
                 background: transparent;
-                @include scut-absolute(25px 15px n n);
+                @include scut-absolute(50% 15px n n);
                 @include transition (all .15s ease-in-out);
                 opacity: 0;
+                text-align: center;
             }
             
             .plg-collapse-toggle:hover{
@@ -144,6 +152,13 @@ $collapse-width:        270px;
     }    
 }
 
+/* 
+*
+*    darwer menu default styles
+*    in collapsed state
+*
+*/
+
 .plg-drawer-menu.plg-collapsed,
 .plg-content-wrapper .plg-drawer-menu{
     
@@ -165,6 +180,10 @@ $collapse-width:        270px;
          
         .plg-item-name, .plg-collapse-toggle{
             opacity: 1;
+        }
+        
+        .plg-item-name{
+            white-space: normal;
         }
      }
 }
@@ -228,6 +247,11 @@ $collapse-width:        270px;
     }  
 }
 
+/**
+*
+*   drawer menu default responsive styles
+*
+**/
 
 
 @media (max-width: 600px) {
@@ -313,4 +337,121 @@ $collapse-width:        270px;
          }
     }
     
+}
+
+
+/**
+*
+*   drawer menu inline style
+*
+**/
+
+.plg-drawer-menu.plg-inline,
+.plg-drawer-menu.plg-collapsed.plg-inline,
+.plg-content-wrapper .plg-drawer-menu.plg-inline,
+.plg-drawer-menu.plg-align-right.plg-inline,
+.plg-content-wrapper.plg-collapsed .plg-drawer-menu.plg-inline,
+.plg-content-wrapper.plg-align-right .plg-drawer-menu.plg-inline,
+.plg-content-wrapper.plg-align-right.plg-collapsed .plg-drawer-menu.plg-inline{
+    
+    border: 1px solid #111;
+    @include scut-padding(0px 20px);
+    @include scut-relative(auto auto auto auto);
+    
+    width: auto;
+    display: inline-block;
+    
+    a{
+        
+        .plg-item-name{
+            opacity: 1;
+        }        
+    }       
+    
+    .plg-drawer-toggle-trigger{
+        display: none;
+    }
+    
+    .plg-menu{
+    
+        @extend %scut-list-inline;
+        margin: 0px auto;
+        
+        > li{
+        
+            > a{
+                padding-right: 40px;
+            
+                > .plg-collapse-toggle{
+                    margin-top: -9px;
+
+                }
+            }
+        
+        }
+        
+        
+        li{
+            position: relative;
+            float: left;
+            
+            a:first-child{
+                position: relative;
+                
+                @include scut-margin(1px n n);
+                @include scut-clearfix;
+                padding-left: 60px;
+
+                > .plg-drawer-icon{
+                    @include scut-absolute(50% n n 20px);
+
+                }
+                
+                > .plg-collapse-toggle{
+                    right: 5px;
+                }
+
+            }
+            
+            ul{
+                @include scut-list-unstyled;
+                @include scut-absolute(100% n n 0px);
+                min-width: 100%;
+                display: none;
+                background-color: $drawer-bgcolor;
+                @include scut-clearfix;
+                border: 1px solid #111;
+                
+                li{
+                    
+                    float: none;
+                    padding: 0px;
+                
+                    a:first-child{
+                        @include scut-padding(20px 10px);
+                    }
+                    
+                    ul{
+                        @include scut-absolute(0px auto n 100%);
+                    }
+                
+                }
+                
+            }
+             
+            
+            .plg-collapse-toggle{
+                opacity: 1;
+            }
+
+        }
+        
+
+    }
+    
+    .plg-menu.plg-menu-align-bottom{
+
+        display: none;
+        
+    }    
 }

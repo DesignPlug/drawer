@@ -40,7 +40,8 @@
                 namespace    : "plg-",  //name space for drawer css selectors
                 open         : null,    //callback function fired when drawer is toggled open
                 close        : null,    //callback function fired when drawer is toggled shut
-                pushBody     : false   //if true toggle trigger slides the whole body to expose collapsed menu
+                pushBody     : false,   //if true toggle trigger slides the whole body to expose collapsed menu
+                inline       : false    //if true menu will have inline class by default, and drawer functionality won't work until set to false
             }, options);
             
            
@@ -61,25 +62,50 @@
                 return '#' + NS($selector);
             });
             
+            //check if menu is inline
+            isInline = (function(){
+                if(Base.hasClass(NS('inline'))) return true;
+                else return false;
+            });
+            
+            //set menu to inline if inline is set to true
+            if(settings.inline === true) Base.addClass(NS('inline'));
+            
+            
             //callback helper
             Callback = (function($cb){
                 if(typeof settings[$cb] === 'function') return settings[$cb]();
             });
             
+            //get getAlignment method
+            
+            GetAlignment = (function(){
+               if(Base.hasClass(NS("align-right"))) 
+               {
+                   return "right";
+               }
+               else
+               {
+                   return "left";
+               }
+            });
+            
             WrapContent = (function(){
-                            if(settings.pushBody === true)
-                            {
-                                if(!Wrapper)
-                                {
-                                    Body.wrapInner('<div class="' + NS('content-wrapper') + '" />');
-                                    Wrapper = $(Cls('content-wrapper'));
-                                }
-                            }
-                            else if(Wrapper)
-                            {
-                                Wrapper.children().unwrap();
-                                Wrapper = false;
-                            }
+                if(settings.pushBody === true && !isInline())
+                {
+                    if(!Wrapper)
+                    {
+                        var alignCls = NS('align-' + GetAlignment() );
+
+                        Body.wrapInner('<div class="' + NS('content-wrapper') + ' ' +  alignCls + '" />');
+                        Wrapper = $(Cls('content-wrapper'));
+                    }
+                }
+                else if(Wrapper)
+                {
+                    Wrapper.children().unwrap();
+                    Wrapper = false;
+                }
             });
             
             WrapContent();
@@ -155,18 +181,6 @@
                 }
             });   
             
-            //set getAlignment method
-            
-            GetAlignment = (function(){
-               if(Base.hasClass(NS("align-right"))) 
-               {
-                   return "right";
-               }
-               else
-               {
-                   return "left";
-               }
-            });
             
             //set Toggle Method
             
@@ -231,15 +245,6 @@
                 $(this).parent('a').siblings('ul').slideToggle();
                 e.preventDefault();
             });
-            
-            //make nav scroll if push body is true
-            
-            if(settings.pushBody === true)
-            {
-                $(window).scroll(function(){
-                    Wrapper.find(Base).css('top', $(this).scrollTop());
-                });
-            }
             
         },
                 

@@ -21,7 +21,7 @@
         
     </head>
     <body>
-        <nav class="plg-drawer-menu ">
+        <nav class="plg-drawer-menu">
             
             <!-- toggle menu trigger -->
             
@@ -80,6 +80,12 @@
             <li>
                 <a href="#" onclick="$('.plg-drawer-menu').PlugDrawerMenu('toggle');">Just Toggle Me</a>
             </li>
+            <li>
+                <a href="#" onclick="$('.plg-drawer-menu').PlugDrawerMenu('options', {inline: true});">Make me Inline</a>
+            </li>
+            <li>
+                <a href="#" onclick="$('.plg-drawer-menu').PlugDrawerMenu('options', {inline: false});">Make me draw again</a>
+            </li>
         </ul>
     </body>
     
@@ -100,7 +106,8 @@
     
         <script>
             $(document).ready(function(){
-                $('.plg-drawer-menu').PlugDrawerMenu({ open: function(){
+                $('.plg-drawer-menu').PlugDrawerMenu({inline: false,
+                                                      open: function(){
                                                                 console.log("you opened the nav"); 
                                                             }, 
                                                       close: function(){ 
